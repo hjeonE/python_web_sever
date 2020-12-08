@@ -14,12 +14,12 @@ while True:
 	connectionSocket, addr = serverSocket.accept()
 	try:
 		message = connectionSocket.recv(1024)
-#print message,'::',message.split()[0],':',message.split()[1]
+		print message,'::',message.split()[0],':',message.split()[1]
 		filename = message.split()[1]
-#print filename,'||',filename[1:]
+		print filename,'||',filename[1:]
 		f = open(filename[1:])
 		outputdata = f.read()
-#print outputdata
+		print outputdata
 #Send one HTTP header line into socket
 #Fill in start
 		connectionSocket.send('\nHTTP/1.1 200 OK\n\n')
