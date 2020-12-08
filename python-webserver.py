@@ -2,22 +2,18 @@
 from socket import *
 serverPort=80
 serverSocket = socket(AF_INET, SOCK_STREAM)
-#Prepare a sever socket
-#Fill in start
 serverSocket.bind(('',serverPort))
 serverSocket.listen(1)
 while True:
-#Establish the connection
 	print 'Ready to serve...'
 	connectionSocket, addr = serverSocket.accept()
 	try:
 	    # message => GET /FILENAME HTTP/1.1
 		message = connectionSocket.recv(1024)
 		filename = message.split()[1]
-		print filename
 		f = open(filename[1:])
 		outputdata = f.read()
-#Send the content of the requested file to the client
+        #Send the content of the requested file to the client
 		for i in range(0, len(outputdata)):
 			connectionSocket.send(outputdata[i])
 		connectionSocket.close()
